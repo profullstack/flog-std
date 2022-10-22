@@ -1,0 +1,3 @@
+[submodule "deps/flog"]
+	path = deps/flog
+	url = https://github.com/flogjs/flog
