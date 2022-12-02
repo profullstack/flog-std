@@ -42,21 +42,21 @@ its path.
 new Path("/home/flog").directory.path === new Path("/home").path;
 ```
 
-#### name: String
+#### name: string
 Returns the filename part of the current object's path with its extension.
 
 ```js
 new Path("/home/flog/file.txt").name === "file.txt";
 ```
 
-#### base: String
+#### base: string
 Returns the filename part of the current object's path without its extension.
 
 ```js
 new Path("/home/flog/file.txt").base === "file";
 ```
 
-#### extension: String
+#### extension: string
 Returns the filename extension part of the current object's path.
 
 ```js
