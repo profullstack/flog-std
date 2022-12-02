@@ -5,8 +5,8 @@
 ```js
 import {File} from "std/filesystem";
 
-// reads the file `input.text` in the current directory into `file`
-const file = await File.read("input.text");
+// reads the file `input.txt` in the current directory into `file`
+const file = await File.read("input.txt");
 ```
 
 ## Spec
@@ -24,11 +24,11 @@ Representation of a filesystem path.
 #### constructor(...args: PathArgument[]): Path
 
 Creates a new object. Lazily holds a reference to the file and doesn't perform
-any IO operations (or check that the file even exists).
+any IO operations (or check that the path even exists).
 
 #### join(...paths: PathArgument[]): Path
 
-Returns a new path with the given paths appended to current object's path;
+Returns a new path with the given paths appended to current object's path.
 
 ```js
 new Path("/home/flog").path === new Path("/home").join("flog").path;
