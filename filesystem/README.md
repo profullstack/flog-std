@@ -1,4 +1,4 @@
-*This is API is partially implemented and not ready yet.*
+*This is API is a stub and not implemented yet.*
 
 # Filesystem API
 
@@ -11,7 +11,7 @@ const file = await File.read("input.text");
 
 ## Spec
 
-*Pseudo-Types reused in later definitions.*
+*Pseudotypes used in later definitions.*
 
 ```
 type PathArgument = string | Path | File;
@@ -26,7 +26,7 @@ Representation of a filesystem path.
 Creates a new object. Lazily holds a reference to the file and doesn't perform
 any IO operations (or check that the file even exists).
 
-#### #join(...paths: PathArgument[]): Path
+#### join(...paths: PathArgument[]): Path
 
 Returns a new path with the given paths appended to current object's path;
 
@@ -34,7 +34,7 @@ Returns a new path with the given paths appended to current object's path;
 new Path("/home/flog").path === new Path("/home").join("flog").path;
 ```
 
-#### get #directory: Path
+#### directory: Path
 Returns a new path with the directory part of the current object's path as
 its path.
 
@@ -42,28 +42,28 @@ its path.
 new Path("/home/flog").directory.path === new Path("/home").path;
 ```
 
-#### get #name: String
+#### name: String
 Returns the filename part of the current object's path with its extension.
 
 ```js
 new Path("/home/flog/file.txt").name === "file.txt";
 ```
 
-#### get #base: String
+#### base: String
 Returns the filename part of the current object's path without its extension.
 
 ```js
 new Path("/home/flog/file.txt").base === "file";
 ```
 
-#### get #extension: String
+#### extension: String
 Returns the filename extension part of the current object's path.
 
 ```js
 new Path("/home/flog/file.txt").extension === "txt";
 ```
 
-#### #is(pattern: RegExp): boolean
+#### is(pattern: RegExp): boolean
 Returns whether the current object's path fulfills the given pattern.
 
 #### Path.is(path: PathArgument, pattern: RegExp)
