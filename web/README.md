@@ -3,11 +3,10 @@
 # Web API
 
 ```js
-import {Server, Response} from "std/web";
+import {serve, Response} from "std/web";
 
-// defaults to a host and port if given nont
-const server = new Server();
-server.serve(request => {
+// defaults to a host and port if given none as a second parameter
+serve(request => {
   return new Response(null, {status: 404});
 );
 ```
@@ -18,8 +17,8 @@ This standard library module implements a *superset* of the
 [WHATWG Fetch API][spec].
 
 Specifically, in addition to `fetch`, `Headers`, `Request` and `Response` of
-the Fetch API, this module will implement at least a `Server` class as a
-companion to the fetch client.
+the Fetch API, this module will implement at least a `serve` function as a
+companion to `fetch`.
 
 [spec]: https://fetch.spec.whatwg.org
 
