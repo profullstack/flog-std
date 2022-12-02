@@ -26,6 +26,8 @@ Representation of a filesystem path.
 Creates a new object. Lazily holds a reference to the file and doesn't perform
 any IO operations (or check that the path even exists).
 
+If no arguments are given, the current directory will be used for the path.
+
 #### join(...paths: PathArgument[]): Path
 
 Returns a new path with the given paths appended to current object's path.
@@ -66,8 +68,11 @@ new Path("/home/flog/file.txt").extension === "txt";
 #### is(pattern: RegExp): boolean
 Returns whether the current object's path fulfills the given pattern.
 
-#### Path.is(path: PathArgument, pattern: RegExp)
-Alias for `new Path(path).is(pattern)`;
+#### Path.is(path: PathArgument, pattern: RegExp): boolean
+Alias for `new Path(path).is(pattern)`.
+
+#### Path.is(pattern: RegExp): boolean
+Alias for `new Path().is(pattern)`.
 
 #### Path.resolve(...paths: string[]): Path
 Returns a new path using the resolved paths.
