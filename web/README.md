@@ -1,4 +1,4 @@
-*This is API is partially implemented and not ready yet.*
+*This API is partially implemented and not ready yet.*
 
 # Web API
 

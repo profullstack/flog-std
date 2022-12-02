@@ -1,4 +1,4 @@
-*This is API is a stub and not implemented yet.*
+*This API is a stub and not implemented yet.*
 
 # Timers API
 
