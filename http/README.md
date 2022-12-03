@@ -1,9 +1,9 @@
 *This API is a stub and not implemented yet.*
 
-# Web API
+# HTTP API
 
 ```js
-import {serve, Response} from "std/web";
+import {serve, Response} from "std/http";
 
 // defaults to a host and port if given none as a second parameter
 serve(request => {
