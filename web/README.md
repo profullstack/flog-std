@@ -8,7 +8,7 @@ import {serve, Response} from "std/web";
 // defaults to a host and port if given none as a second parameter
 serve(request => {
   return new Response(null, {status: 404});
-);
+});
 ```
 
 ## Spec
