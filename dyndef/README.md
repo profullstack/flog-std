@@ -7,7 +7,7 @@ Verify that a value is of a certain type.
 ```js
 // examples/is.js
 
-import {is} from "dyndef";
+import {is} from "std/dyndef";
 
 try {
   // doesn't throw
@@ -30,7 +30,7 @@ Verify that a value is of a certain type, or that it is `undefined` or `null`.
 ```js
 // examples/maybe.js
 
-import {maybe} from "dyndef";
+import {maybe} from "std/dyndef";
 
 try {
   // doesn't throw
