@@ -1,5 +1,5 @@
 import {Test} from "debris";
-import Is from "./Is.js";
+import Is from "Is.js";
 
 const test = new Test();
 

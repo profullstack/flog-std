@@ -1,5 +1,5 @@
-import Is from "./Is.js";
-import {nullish} from "./attributes.js";
+import Is from "Is.js";
+import {nullish} from "attributes.js";
 
 const operations = [
   // typeof

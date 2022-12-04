@@ -1,4 +1,4 @@
-import Is from "./Is.js";
+import Is from "Is.js";
 
 export const constructible = value => {
   try {

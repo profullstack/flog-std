@@ -1,5 +1,5 @@
 import {Test} from "debris";
-import maybe from "./maybe.js";
+import maybe from "maybe.js";
 
 const test = new Test();
 

@@ -1,4 +1,4 @@
-# Dyndef: Dynamic Defensive Programming for JavaScript
+# Dyndef: Dynamic Defensive Programming 
 
 ## `is`
 
@@ -20,7 +20,6 @@ try {
     // -> `true` must be string
   }
 }
-
 ```
 
 ## `maybe`

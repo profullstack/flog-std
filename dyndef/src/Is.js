@@ -1,6 +1,5 @@
-import {constructible} from "./construct.js";
-import assert from "./assert.js";
-import util from "util";
+import {constructible} from "construct.js";
+import assert from "assert.js";
 
 const test = ({condition, def, error}) => assert(condition, error || def);
 
@@ -25,7 +24,7 @@ export default class Is {
   }
 
   #typeof(type, error) {
-    const def = `\`${util.inspect(this.#value)}\` must be ${type}`;
+    const def = `\`${this.#value}\` must be ${type}`;
     const condition = typeof this.#value === type;
     return this.#test({condition, def, error});
   }
