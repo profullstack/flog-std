@@ -7,7 +7,3 @@
 This standard library module implements the [W3C Crypto API][spec].
 
 [spec]: https://w3c.github.io/webcrypto
-
-### License
-
-AGPL3.0

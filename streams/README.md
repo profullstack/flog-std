@@ -7,7 +7,3 @@
 This standard library module implements the [WHATWG Streams API][spec].
 
 [spec]: https://streams.spec.whatwg.org
-
-### License
-
-AGPL3.0

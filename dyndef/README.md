@@ -44,9 +44,4 @@ try {
     // -> `true` must be string
   }
 }
-
 ```
-
-## License
-
-BSD-3-Clause

@@ -21,7 +21,3 @@ the Fetch API, this module will implement at least a `serve` function as a
 companion to `fetch`.
 
 [spec]: https://fetch.spec.whatwg.org
-
-### License
-
-AGPL3.0
