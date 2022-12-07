@@ -1,0 +1,9 @@
+{
+  "name": "std/dyndef",
+  "description": "Dynamic Defensive Programming for JavaScript",
+  "version": "0.3.0",
+  "author": "Terrablue <terrablue@proton.me>",
+  "issues": "https://github.com/flogjs/std/dyndef/issues",
+  "repository": "https://github.com/flogjs/std/dyndef",
+  "license": "MIT"
+}
