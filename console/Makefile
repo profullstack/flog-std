@@ -1,5 +1,5 @@
 NAME=module
-CFLAGS=-fPIC -Wall -O3 -L../deps/flog -l:-libqjs.a -c -I../deps/flog/src
+CFLAGS=-fPIC -Wall -O3 -L../deps/flog -l:-libqjs.a -I../deps/flog/src
 SRCS=$(wildcard src/*.c)
 OBJS=$(patsubst %.c,%.o,$(SRCS))
 SO=$(NAME).so
