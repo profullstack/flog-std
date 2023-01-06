@@ -81,7 +81,3 @@ Returns a new path using the resolved paths.
 
 Representation of a file object (this can be a file, a directory, a symlink,
 etc.).
-
-### License
-
-AGPL3.0
