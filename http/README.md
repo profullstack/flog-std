@@ -5,10 +5,8 @@
 ```js
 import {serve, Response} from "std/http";
 
-// defaults to a host and port if given none as a second parameter
-serve(request => {
-  return new Response(null, {status: 404});
-});
+// uses a default host and port if no `options` is given as second parameter
+serve(request => new Response(null, {status: 404}));
 ```
 
 ## Spec
