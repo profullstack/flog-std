@@ -1,0 +1,26 @@
+{
+  "name": "runtime-compat",
+  "version": "0.9.2",
+  "author": "Terrablue <terrablue@posteo.is>",
+  "bugs": "https://github.com/flogjs/std/issues",
+  "repository": "https://github.com/flogjs/std/tree/master/node",
+  "description": "Flog standard library implementation for NodeJS",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.31.0",
+    "eslint-plugin-json": "^3.1.0"
+  },
+  "type": "module",
+  "exports": {
+    "console": "./console/exports.js",
+    "crypto": "./crypto/exports.js",
+    "dyndef": "./dyndef/exports.js",
+    "filesystem": "./filesystem/exports.js",
+    "http": "./http/exports.js",
+    "streams": "./streams/exports.js",
+    "timers": "./timers/exports.js"
+  },
+  "dependencies": {
+    "polyad": "^0.2.2"
+  }
+}
