@@ -1,7 +1,9 @@
 {
-  "name": "std/console",
-  "description": "Implementation of the WHATWG Console Standard",
+  "name": "std/filesystem",
+  "description": "Filesystem operations",
   "version": "0.1.0",
-  "url": "https://github.com/flogjs/std/console",
+  "author": "Terrablue <terrablue@proton.me>",
+  "issues": "https://github.com/flogjs/std/issues",
+  "repository": "https://github.com/flogjs/std/tree/master/filesystem",
   "license": "MIT"
 }
