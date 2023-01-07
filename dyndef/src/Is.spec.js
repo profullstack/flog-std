@@ -1,4 +1,4 @@
-import Is from "Is.js";
+import Is from "./Is.js";
 
 const fixtures = Object.entries({
   string: ["", String()],

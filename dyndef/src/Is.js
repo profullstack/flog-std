@@ -1,5 +1,5 @@
-import {constructible} from "construct.js";
-import assert from "assert.js";
+import {constructible} from "./construct.js";
+import assert from "./assert.js";
 
 const test = ({condition, def, error}) => assert(condition, error || def);
 
