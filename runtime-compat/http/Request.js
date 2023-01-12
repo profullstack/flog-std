@@ -1,6 +1,6 @@
 import {IncomingMessage} from "http";
 
-export default class {
+export default class Request {
   #body;
   #headers = new Headers();
   #url;
