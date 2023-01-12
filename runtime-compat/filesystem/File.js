@@ -1,5 +1,6 @@
-import fs from "fs";
+import fs from "node:fs";
 import {mkdir, rm, readFile, writeFile, copyFile} from "node:fs/promises";
+import {Readable, Writable} from "node:stream";
 import {is, maybe} from "../dyndef/exports.js";
 import {EagerEither} from "polyad";
 import Path from "./Path.js";
@@ -52,16 +53,12 @@ export default class File {
     return new File(path).exists;
   }
 
-  get stream() {
-    return this.readStream;
+  get readable() {
+    return Readable.toWeb(fs.createReadStream(this.path, {flags: "r"}));
   }
 
-  get readStream() {
-    return fs.createReadStream(this.path, {flags: "r"});
-  }
-
-  get writeStream() {
-    return fs.createWriteStream(this.path);
+  get writable() {
+    return Writable.toWeb(fs.createWriteStream(this.path));
   }
 
   async remove(options) {
@@ -183,18 +180,5 @@ export default class File {
 
   static write(path, data, options) {
     return new File(path).write(data, options);
-  }
-
-  readSync(options) {
-    maybe(options).object();
-
-    return fs.readFileSync(this.path, {
-      ...options,
-      encoding: options?.encoding ?? "utf8",
-    });
-  }
-
-  static readSync(path, options) {
-    return new File(path).read(options);
   }
 }
