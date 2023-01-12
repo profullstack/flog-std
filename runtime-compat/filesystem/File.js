@@ -1,6 +1,5 @@
 import fs from "fs";
-import {readdir, mkdir, rm,
-  readFile, writeFile, copyFile} from "node:fs/promises";
+import {mkdir, rm, readFile, writeFile, copyFile} from "node:fs/promises";
 import {is, maybe} from "../dyndef/exports.js";
 import {EagerEither} from "polyad";
 import Path from "./Path.js";
