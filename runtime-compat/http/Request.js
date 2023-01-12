@@ -1,4 +1,5 @@
 import {IncomingMessage} from "http";
+import {Readable} from "stream";
 
 export default class Request {
   #body;
@@ -8,29 +9,19 @@ export default class Request {
 
   constructor(input, {headers} = {}) {
     if (input instanceof IncomingMessage) {
-      this.#fromIncomingMessage(input);
+      this.#body = Readable.toWeb(input);
     }
     if (headers !== undefined) {
       Object.entries(headers).forEach(header => {
         this.#headers.set(...header);
       });
     }
-    ["url", "method"].filter(property => input[property]).forEach(property => {
-      this[`#${property}`] = input[property];
-    });
-  }
-
-  #fromIncomingMessage(incomingMessage) {
-    this.#body = new ReadableStream({
-      start(controller) {
-        incomingMessage.on("data", chunk => {
-          controller.enqueue(chunk);
-        });
-        incomingMessage.on("end", () => {
-          controller.close();
-        });
-      },
-    });
+    if (input.method !== undefined) {
+      this.#method = input.method;
+    }
+    if (input.url !== undefined) {
+      this.#url = input.url;
+    }
   }
 
   get headers() {

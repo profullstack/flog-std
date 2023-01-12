@@ -1,18 +1,20 @@
 import {createServer} from "https";
+import {Writable} from "stream";
 import Request from "./Request.js";
 
 export default (handler, conf) => {
-  const server = createServer(conf, async (_request, _response) => {
+  const server = createServer(conf, async (req, res) => {
     // handler gets a WHATWG Request, and returns a WHATWG Response
     //
     // 1. wrap a node request in a WHATWG request
-    const request = new Request(_request, {headers: _request.headers});
+    const request = new Request(req, {headers: req.headers});
 
     const response = await handler(request);
+
+    res.writeHead(response.status);
+
     // 2. copy from a WHATWG response into a node response
-    _response.writeHead(response.status);
-    // should contain body
-    _response.end();
+    await response.body.pipeTo(Writable.toWeb(res));
   });
   server.listen(conf?.port ?? 9999, conf?.host ?? "localhost");
 };
