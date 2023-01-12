@@ -20,13 +20,13 @@ export default class {
     });
   }
 
-  #fromIncomingMessage(outgoingMessage) {
+  #fromIncomingMessage(incomingMessage) {
     this.#body = new ReadableStream({
       start(controller) {
-        outgoingMessage.on("data", chunk => {
+        incomingMessage.on("data", chunk => {
           controller.enqueue(chunk);
         });
-        outgoingMessage.on("end", () => {
+        incomingMessage.on("end", () => {
           controller.close();
         });
       },
