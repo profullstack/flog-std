@@ -11,6 +11,9 @@ export default (handler, conf) => {
 
     const response = await handler(request);
 
+    for (const [name, value] of response.headers.entries()) {
+      res.setHeader(name, value);
+    }
     res.writeHead(response.status);
 
     // 2. copy from a WHATWG response into a node response

@@ -1,3 +1,5 @@
+import {ReadableStream} from "runtime-compat/streams";
+import {File} from "runtime-compat/filesystem";
 import {is} from "../dyndef/exports.js";
 
 const from = {
@@ -20,6 +22,12 @@ export default class Response {
   constructor(body, {status, headers = {}}) {
     if (typeof body === "string") {
       this.#body = from.string(body);
+    }
+    if (body instanceof ReadableStream) {
+      this.#body = body;
+    }
+    if (body instanceof File) {
+      this.#body = body.readable;
     }
     if (headers !== undefined) {
       Object.entries(headers).forEach(header => {
