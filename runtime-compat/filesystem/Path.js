@@ -1,7 +1,7 @@
 import {join, resolve, dirname, basename, extname} from "path";
-import {assert, is, defined, maybe} from "dyndef";
-import File from "./File.js";
 import {lstat, readdir} from "node:fs/promises";
+import {assert, is, defined, maybe} from "../dyndef/exports.js";
+import File from "./File.js";
 
 const file_prefix = 7;
 const parse = p => p.startsWith("file://") ? p.slice(file_prefix) : p;

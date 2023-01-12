@@ -1,7 +1,7 @@
 import fs from "fs";
 import {readdir, mkdir, rm,
   readFile, writeFile, copyFile} from "node:fs/promises";
-import {is, maybe} from "dyndef";
+import {is, maybe} from "../dyndef/exports.js";
 import {EagerEither} from "polyad";
 import Path from "./Path.js";
 
@@ -107,7 +107,7 @@ export default class File {
 
   async #collect(pattern, options) {
     return EagerEither
-      .try(() => this.list(() => true))
+      .try(() => this.#path.list(() => true))
       .match({left: () => []})
       .map(async list => {
         let files = [];

@@ -4,13 +4,20 @@
     "es2022": true,
     "node": true
   },
-  "extends": ["eslint:recommended"],
+  "extends": ["eslint:recommended", "plugin:json/recommended"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "sourceType": "module"
+    "requireConfigFile": false,
+    "sourceType": "module",
+    "babelOptions": {
+      "plugins": [
+        "@babel/plugin-syntax-import-assertions"
+      ]
+    }
   },
   "rules": {
     "array-callback-return": ["error"],
@@ -37,7 +44,7 @@
     "max-classes-per-file": ["error"],
     "max-depth": ["error", 2],
     "max-lines": ["error", {
-      "max": 100,
+      "max": 200,
       "skipBlankLines": true,
       "skipComments": true
     }],

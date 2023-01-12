@@ -1,4 +1,5 @@
 **/*.o
 **/*.so
 **/*.lock
-**/modules
+**/*lock.json
+**/*modules
