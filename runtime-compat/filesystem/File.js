@@ -57,8 +57,16 @@ export default class File {
     return Readable.toWeb(fs.createReadStream(this.path, {flags: "r"}));
   }
 
+  static readable(path) {
+    return new File(path).readable;
+  }
+
   get writable() {
     return Writable.toWeb(fs.createWriteStream(this.path));
+  }
+
+  static writable(path) {
+    return new File(path).writable;
   }
 
   async remove(options) {
