@@ -1,9 +1,9 @@
 {
   "name": "runtime-compat",
-  "version": "0.9.2",
-  "author": "Terrablue <terrablue@posteo.is>",
+  "version": "0.10.0",
+  "author": "Terrablue <terrablue@proton.me>",
   "bugs": "https://github.com/flogjs/std/issues",
-  "repository": "https://github.com/flogjs/std/tree/master/node",
+  "repository": "https://github.com/flogjs/std/tree/master/runtime-compat",
   "description": "Flog standard library implementation for NodeJS",
   "license": "MIT",
   "devDependencies": {
