@@ -181,4 +181,12 @@ export default class File {
   static write(path, data, options) {
     return new File(path).write(data, options);
   }
+
+  json() {
+    return this.read().then(contents => JSON.parse(contents));
+  }
+
+  static json(path) {
+    return new File(path).json();
+  }
 }
