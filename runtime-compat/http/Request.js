@@ -1,5 +1,6 @@
 import {IncomingMessage} from "http";
 import {Readable} from "stream";
+import {is} from "../dyndef/exports.js";
 
 export default class Request {
   #body;
@@ -8,19 +9,24 @@ export default class Request {
   #method;
 
   constructor(input, {headers} = {}) {
+    is(input).object();
+    const {method, url} = input;
+
+    is(method).string();
+    this.#method = method;
+
+    is(url).string();
+    this.#url = url;
+
+    is(headers).object();
+    Object.entries(headers).forEach(header => this.#headers.set(...header));
+
+    this.#setBody(input);
+  }
+
+  #setBody(input) {
     if (input instanceof IncomingMessage) {
       this.#body = Readable.toWeb(input);
-    }
-    if (headers !== undefined) {
-      Object.entries(headers).forEach(header => {
-        this.#headers.set(...header);
-      });
-    }
-    if (input.method !== undefined) {
-      this.#method = input.method;
-    }
-    if (input.url !== undefined) {
-      this.#url = input.url;
     }
   }
 

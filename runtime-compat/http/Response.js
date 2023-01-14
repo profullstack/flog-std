@@ -1,18 +1,26 @@
 import {ReadableStream} from "runtime-compat/streams";
 import {File} from "runtime-compat/filesystem";
-import {is} from "../dyndef/exports.js";
+import {is, defined} from "../dyndef/exports.js";
 
-const from = {
-  string(body) {
-    is(body).string();
-    return new ReadableStream({
-      start(controller) {
-        controller.enqueue(body);
-        controller.close();
-      },
-    });
-  },
-};
+const constructors = [...new Map()
+  .set(v => typeof v === "string", body => new ReadableStream({
+    start(controller) {
+      controller.enqueue(body);
+      controller.close();
+    },
+  }))
+  .set(v => v instanceof ReadableStream, body => body)
+  .set(v => v instanceof File, body => body.readable)
+  .set(v => v === null, () => new ReadableStream({
+    start(controller) {
+      controller.close();
+    },
+  }))
+  .set(() => true, () => {
+    throw new Error("unparsable body");
+  })
+  .entries()]
+;
 
 export default class Response {
   #body;
@@ -20,21 +28,16 @@ export default class Response {
   #headers = new Headers();
 
   constructor(body, {status, headers = {}}) {
-    if (typeof body === "string") {
-      this.#body = from.string(body);
-    }
-    if (body instanceof ReadableStream) {
-      this.#body = body;
-    }
-    if (body instanceof File) {
-      this.#body = body.readable;
-    }
-    if (headers !== undefined) {
-      Object.entries(headers).forEach(header => {
-        this.#headers.set(...header);
-      });
-    }
+    defined(body);
+
+    const [, setBody] = constructors.find(([constructor]) => constructor(body));
+    this.#body = setBody(body);
+
+    is(status).number();
     this.#status = status;
+
+    is(headers).object();
+    Object.entries(headers).forEach(header => this.#headers.set(...header));
   }
 
   get body() {
