@@ -1,5 +1,5 @@
-import {ReadableStream} from "runtime-compat/streams";
-import {File} from "runtime-compat/filesystem";
+import {ReadableStream} from "../streams/exports.js";
+import {File} from "../filesystem/exports.js";
 import {is, defined} from "../dyndef/exports.js";
 
 const constructors = [...new Map()
