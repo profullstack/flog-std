@@ -24,7 +24,7 @@ export default class Is {
   }
 
   #typeof(type, error) {
-    const def = `\`${this.#value}\` must be ${type}`;
+    const def = `\`${this.#value}\` must be of type ${type}`;
     const condition = typeof this.#value === type;
     return this.#test({condition, def, error});
   }
