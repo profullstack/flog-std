@@ -2,7 +2,7 @@ import fs from "node:fs";
 import {mkdir, rm, readFile, writeFile, copyFile} from "node:fs/promises";
 import {Readable, Writable} from "node:stream";
 import {is, maybe} from "../dyndef/exports.js";
-import {EagerEither} from "polyad";
+import {EagerEither} from "../functional/exports.js";
 import Path from "./Path.js";
 
 export default class File {

@@ -19,11 +19,9 @@
     "./crypto": "./crypto/exports.js",
     "./dyndef": "./dyndef/exports.js",
     "./filesystem": "./filesystem/exports.js",
+    "./functional": "./functional/exports.js",
     "./http": "./http/exports.js",
     "./streams": "./streams/exports.js",
     "./timers": "./timers/exports.js"
-  },
-  "dependencies": {
-    "polyad": "^0.2.2"
   }
 }
