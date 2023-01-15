@@ -1,4 +1,4 @@
-# Dyndef: Dynamic Defensive Programming 
+# Dynamic Defensive Programming 
 
 ## `is`
 
@@ -45,3 +45,11 @@ try {
   }
 }
 ```
+
+## Spec
+
+Own API.
+
+## License
+
+MIT
