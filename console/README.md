@@ -8,7 +8,7 @@ console.log("Hello, world!");
 
 ## Spec
 
-This standard library module implements the [WHATWG Console API][spec].
+This standard library module implements the WHATWG [Console API][spec].
 
 [spec]: https://console.spec.whatwg.org
 
