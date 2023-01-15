@@ -4,3 +4,4 @@ debris.json
 output
 jsconfig.json
 examples
+*.spec.js
