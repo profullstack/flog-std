@@ -36,7 +36,7 @@ Implementation of WHATWG Streams API.
 
 Runtime compat is a Flog standard library implementation for NodeJS. It is
 available on NPM as the `runtime-compat` package, and its exports correspond
-to Flog standard library modules, allowing for code reuse on both platforms.
+to Flog standard library modules, allowing for code reuse on both runtimes.
 
 ### Flog
 
