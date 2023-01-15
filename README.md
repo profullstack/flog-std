@@ -2,6 +2,6 @@
 
 This is the Flog standard library.
 
-# License
+## Console [`std/console`](console/README.md)
 
-MIT
+Implementation of WHATWG Console.

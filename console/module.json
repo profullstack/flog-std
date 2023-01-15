@@ -1,6 +1,6 @@
 {
   "name": "std/console",
-  "description": "Implementation of the WHATWG Console Standard",
+  "description": "Standard library implementation of WHATWG Console",
   "version": "0.1.0",
   "author": "Terrablue <terrablue@proton.me>",
   "issues": "https://github.com/flogjs/std/issues",
