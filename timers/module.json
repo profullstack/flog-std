@@ -1,0 +1,9 @@
+{
+  "name": "std/timers",
+  "description": "Standard library implementation of Timers API",
+  "version": "0.1.0",
+  "author": "Terrablue <terrablue@proton.me>",
+  "issues": "https://github.com/flogjs/std/issues",
+  "repository": "https://github.com/flogjs/std/tree/master/timers",
+  "license": "MIT"
+}

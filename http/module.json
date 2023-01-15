@@ -1,0 +1,9 @@
+{
+  "name": "std/http",
+  "description": "Standard library superset implementation of Fetch API",
+  "version": "0.1.0",
+  "author": "Terrablue <terrablue@proton.me>",
+  "issues": "https://github.com/flogjs/std/issues",
+  "repository": "https://github.com/flogjs/std/tree/master/http",
+  "license": "MIT"
+}

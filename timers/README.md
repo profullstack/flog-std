@@ -17,4 +17,8 @@ console.log("Hello,");
 
 This standard library module implements the [WHATWG Timers API][spec].
 
+## License
+
+MIT
+
 [spec]: https://html.spec.whatwg.org/timers-and-user-prompts.html#timers

@@ -10,8 +10,8 @@ console.log("Hello, world!");
 
 This standard library module implements the WHATWG [Console API][spec].
 
-[spec]: https://console.spec.whatwg.org
-
 ## License
 
 MIT
+
+[spec]: https://console.spec.whatwg.org

@@ -6,8 +6,8 @@
 
 This standard library module implements the W3C [Web Cryptography API][spec].
 
-[spec]: https://w3c.github.io/webcrypto
-
 ## License
 
 MIT
+
+[spec]: https://w3c.github.io/webcrypto

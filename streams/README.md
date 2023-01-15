@@ -4,6 +4,11 @@
 
 ## Spec
 
-This standard library module implements the [WHATWG Streams API][spec].
+This standard library module implements the WHATWG [Streams API][spec].
+
+## License
+
+MIT
 
 [spec]: https://streams.spec.whatwg.org
+
