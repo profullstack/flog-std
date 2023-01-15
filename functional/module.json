@@ -1,0 +1,9 @@
+{
+  "name": "std/functional",
+  "description": "Standard library functional programming",
+  "version": "0.1.0",
+  "author": "Terrablue <terrablue@proton.me>",
+  "issues": "https://github.com/flogjs/std/issues",
+  "repository": "https://github.com/flogjs/std/tree/master/functional",
+  "license": "MIT"
+}
