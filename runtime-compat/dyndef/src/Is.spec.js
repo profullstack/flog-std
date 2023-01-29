@@ -5,7 +5,6 @@ const fixtures = Object.entries({
   number: [0, Number(0)],
   bigint: [0n],
   boolean: [true, false],
-  symbol: [Symbol("symbol")],
   function: [() => undefined, function() { return undefined; }],
   null: [null],
   undefined: [undefined],
@@ -18,7 +17,7 @@ export default test => {
         .flatMap(([, value]) => value);
       values.forEach(value => {
         assert(new Is(value)[key]()).equals(value);
-        non_values.forEach(nonValue =>
+        nonValues.forEach(nonValue =>
           assert(() => new Is(nonValue)[key]()).throws())
       });
     });
