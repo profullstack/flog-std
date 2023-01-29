@@ -1,10 +1,12 @@
-import {assert, is, every} from "std/dyndef";
+import {assert, is, every} from "../../dyndef/exports.js";
 
 export default class Vector {
   #coordinates;
 
   constructor(...coordinates) {
     every(coordinates).number();
+    assert(coordinates.length > 0);
+
     this.#coordinates = [...coordinates];
   }
 
@@ -20,8 +22,12 @@ export default class Vector {
     return Math.sqrt(this.#reduce((sum, x) => sum + x * x, 0));
   }
 
+  get size() {
+    return this.#coordinates.length;
+  }
+
   add(other) {
-    assert(this.length !== other.length, "vectors must have the same length");
+    assert(this.size === other.size, "vectors must have the same length");
     return this.#map((x, i) => x + other.at(i));
   }
 
@@ -37,6 +43,6 @@ export default class Vector {
   }
 
   toString() {
-    return this.#reduce((string, x) => string + `,${x}`, "");
+    return `{${this.#coordinates.join(",")}}`;
   }
 }

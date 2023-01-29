@@ -28,6 +28,10 @@ Functional programming as per own API.
 
 Implementation of a superset of WHATWG Fetch API.
 
+### Math [`std/math`](math/README.md)
+
+Mathematical operations as per own API.
+
 ### Streams [`std/streams`](streams/README.md)
 
 Implementation of WHATWG Streams API.
