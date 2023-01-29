@@ -1,6 +1,6 @@
 import {join, resolve, dirname, basename, extname} from "path";
 import {lstat, readdir} from "node:fs/promises";
-import {assert, is, defined, maybe} from "../dyndef/exports.js";
+import {assert, is, defined, maybe} from "runtime-compat/dyndef";
 import File from "./File.js";
 
 const file_prefix = 7;
@@ -116,6 +116,26 @@ export default class Path {
     is(pattern).of(RegExp);
 
     return pattern.test(this.path);
+  }
+
+  discover(filename) {
+    const package_json = new Path(this.path, filename);
+    return package_json.exists.then(exists => {
+      if (exists) {
+        return this.path;
+      }
+      const directory = this.directory;
+      if (`${directory}` === "/") {
+        const e = "Stopping at filesystem boundary, no package.json found";
+        throw new Error(e);
+      }
+      return directory.discover(filename);
+    })
+  }
+
+  // return the first directory where package.json is found, starting at cwd
+  static get moduleRoot() {
+    return Path.resolve().discover("package.json");
   }
 
   static is(path, pattern) {
