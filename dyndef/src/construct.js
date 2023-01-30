@@ -12,4 +12,4 @@ export const constructible = value => {
 export const inconstructible = value => !constructible(value);
 
 export const inconstructible_function =
-  value => inconstructible(value) && new Is(value).function();
+  value => inconstructible(value) && typeof value === "function";
