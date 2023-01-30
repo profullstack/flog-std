@@ -1,6 +1,6 @@
-import {ReadableStream} from "../streams/exports.js";
-import {File} from "../filesystem/exports.js";
-import {is, defined} from "../dyndef/exports.js";
+import {ReadableStream} from "runtime-compat/streams";
+import {File} from "runtime-compat/filesystem";
+import {is, defined} from "runtime-compat/dyndef";
 
 const constructors = [...new Map()
   .set(v => typeof v === "string", body => new ReadableStream({

@@ -1,6 +1,6 @@
 import {IncomingMessage} from "http";
 import {Readable} from "stream";
-import {is} from "../dyndef/exports.js";
+import {is} from "runtime-compat/dyndef";
 
 export default class Request {
   #body;

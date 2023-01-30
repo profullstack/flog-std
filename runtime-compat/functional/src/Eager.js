@@ -1,4 +1,4 @@
-import {inconstructible_function} from "../../dyndef/exports.js";
+import {inconstructible_function} from "runtime-compat/dyndef";
 
 const $promise = Symbol("#promise");
 

@@ -1,4 +1,4 @@
-import {assert, is, every} from "../../dyndef/exports.js";
+import {assert, is, every} from "runtime-compat/dyndef";
 
 export default class Vector {
   #coordinates;
