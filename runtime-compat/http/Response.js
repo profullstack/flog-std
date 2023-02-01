@@ -11,6 +11,7 @@ const constructors = [...new Map()
   }))
   .set(v => v instanceof ReadableStream, body => body)
   .set(v => v instanceof File, body => body.readable)
+  // responses with no body
   .set(v => v === null, () => new ReadableStream({
     start(controller) {
       controller.close();
@@ -28,8 +29,6 @@ export default class Response {
   #headers = new Headers();
 
   constructor(body, {status, headers = {}}) {
-    defined(body);
-
     const [, setBody] = constructors.find(([constructor]) => constructor(body));
     this.#body = setBody(body);
 
