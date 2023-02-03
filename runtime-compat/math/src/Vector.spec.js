@@ -33,7 +33,7 @@ export default test => {
     assert(new Vector(1, 2, 3, 4).add(new Vector(5, 6, 7, 8)).toString())
       .equals("{6,8,10,12}");
   });
-  
+
   test.case("multiply", assert => {
     assert(new Vector(1, 2).multiply(new Vector(3, 4))).equals(11);
     assert(new Vector(2, 3, 4).multiply(new Vector(5, 6, 7))).equals(56);
@@ -41,7 +41,7 @@ export default test => {
     assert(new Vector(2, -1, 3).multiply(new Vector(1, 2, -3))).equals(-9);
     assert(new Vector(0, 1, 2, 3).multiply(new Vector(4, 5, 6, 7))).equals(38);
   });
-  
+
   test.case("at", assert => {
     assert(new Vector(1, 2).at(0)).equals(1);
     assert(new Vector(2, 3, 4).at(2)).equals(4);
@@ -56,7 +56,7 @@ export default test => {
     assert(new Vector(0, 1, 2, 3).at(-4)).equals(0);
     assert(new Vector(0, 1, 2, 3).at(-5)).undefined();
   });
-  
+
   test.case("toString", assert => {
     assert(new Vector(1, 2).toString()).equals("{1,2}");
     assert(new Vector(2, 3, 4).toString()).equals("{2,3,4}");

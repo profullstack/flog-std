@@ -122,10 +122,9 @@ export default class File {
           const {file} = path;
           if (options?.recursive && await file.isDirectory) {
             files = files.concat(await file.#collect(pattern, options));
-          } else {
-            if (pattern === undefined || path.is(new RegExp(pattern, "u"))) {
-              files.push(file);
-            }
+          } else if (pattern === undefined ||
+              path.is(new RegExp(pattern, "u"))) {
+            files.push(file);
           }
         }
         return files;

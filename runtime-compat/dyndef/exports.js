@@ -1,5 +1,5 @@
-import Is from "./src/Is.js"
-import Every from "./src/Every.js"
+import Is from "./src/Is.js";
+import Every from "./src/Every.js";
 
 const is = value => new Is(value);
 const every = value => new Every(value);

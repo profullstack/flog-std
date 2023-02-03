@@ -124,13 +124,13 @@ export default class Path {
       if (exists) {
         return this.path;
       }
-      const directory = this.directory;
+      const {directory} = this;
       if (`${directory}` === "/") {
         const e = "Stopping at filesystem boundary, no package.json found";
         throw new Error(e);
       }
       return directory.discover(filename);
-    })
+    });
   }
 
   // return the first directory where package.json is found, starting at cwd

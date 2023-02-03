@@ -1,4 +1,4 @@
-import Either from "./EagerEither.js"
+import Either from "./EagerEither.js";
 
 export default test => {
   test.case("right", async assert => {
