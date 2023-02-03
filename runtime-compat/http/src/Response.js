@@ -1,6 +1,6 @@
 import {ReadableStream} from "runtime-compat/streams";
 import {File} from "runtime-compat/filesystem";
-import {is, defined} from "runtime-compat/dyndef";
+import {is} from "runtime-compat/dyndef";
 
 const constructors = [...new Map()
   .set(v => typeof v === "string", body => new ReadableStream({

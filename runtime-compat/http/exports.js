@@ -1,5 +1,5 @@
-export {default as serve} from "./serve.js";
-export {default as Response} from "./Response.js";
-export {default as Request} from "./Request.js";
-
-export const _fetch = fetch;
+export {default as serve} from "./src/serve.js";
+export {default as Response} from "./src/Response.js";
+export {default as Request} from "./src/Request.js";
+const _fetch = fetch;
+export {_fetch as fetch};
