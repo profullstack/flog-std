@@ -4,11 +4,13 @@ import {Readable, Writable} from "node:stream";
 import {is, maybe} from "runtime-compat/dyndef";
 import {EagerEither} from "runtime-compat/functional";
 import Path from "./Path.js";
+import Blob from "./Blob.js";
 
-export default class File {
+export default class File extends Blob {
   #path;
 
   constructor(...args) {
+    super();
     // guarded by new Path
     this.#path = new Path(...args);
   }
