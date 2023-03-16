@@ -1,3 +1,4 @@
+import Headers from "./Headers.js";
 import {IncomingMessage} from "http";
 import {Readable} from "stream";
 import {is} from "runtime-compat/dyndef";

@@ -1,3 +1,4 @@
+import Headers from "./Headers.js";
 import {ReadableStream} from "runtime-compat/streams";
 import {File} from "runtime-compat/filesystem";
 import {is} from "runtime-compat/dyndef";
