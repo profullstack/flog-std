@@ -1,6 +1,6 @@
 import Headers from "./Headers.js";
 import {ReadableStream} from "runtime-compat/streams";
-import {File} from "runtime-compat/filesystem";
+import {Blob} from "runtime-compat/filesystem";
 import {is} from "runtime-compat/dyndef";
 
 const constructors = [...new Map()
@@ -11,7 +11,7 @@ const constructors = [...new Map()
     },
   }))
   .set(v => v instanceof ReadableStream, body => body)
-  .set(v => v instanceof File, body => body.readable)
+  .set(v => v instanceof Blob, body => body.readable)
   // responses with no body
   .set(v => v === null, () => new ReadableStream({
     start(controller) {
