@@ -48,7 +48,7 @@ try {
 
 ## Spec
 
-As per Own API.
+As per own API.
 
 ## License
 
