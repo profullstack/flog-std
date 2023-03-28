@@ -122,23 +122,21 @@ export default class Path {
     return pattern.test(this.path);
   }
 
-  discover(filename) {
-    const package_json = new Path(this.path, filename);
-    return package_json.exists.then(exists => {
-      if (exists) {
-        return this;
-      }
-      const {directory} = this;
-      if (`${directory}` === "/") {
-        const e = "Stopping at filesystem boundary, no package.json found";
-        throw new Error(e);
-      }
-      return directory.discover(filename);
-    });
+  async discover(filename) {
+    const packageJSON = new Path(this.path, filename);
+    if (await packageJSON.exists) {
+      return this;
+    }
+    const {directory} = this;
+    if (`${directory}` === "/") {
+      const error = "Stopping at filesystem boundary, no package.json found";
+      throw new Error(error);
+    }
+    return directory.discover(filename);
   }
 
   // return the first directory where package.json is found, starting at cwd
-  static get root() {
+  static root() {
     return Path.resolve().discover("package.json");
   }
 
