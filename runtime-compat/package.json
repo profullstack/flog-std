@@ -18,7 +18,7 @@
     "./console": "./console/exports.js",
     "./crypto": "./crypto/exports.js",
     "./dyndef": "./dyndef/exports.js",
-    "./filesystem": "./filesystem/exports.js",
+    "./fs": "./fs/exports.js",
     "./functional": "./functional/exports.js",
     "./http": "./http/exports.js",
     "./math": "./math/exports.js",

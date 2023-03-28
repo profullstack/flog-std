@@ -1,6 +1,6 @@
 import Headers from "./Headers.js";
 import {ReadableStream} from "runtime-compat/streams";
-import {Blob} from "runtime-compat/filesystem";
+import {Blob} from "runtime-compat/fs";
 import {is} from "runtime-compat/dyndef";
 
 const constructors = [...new Map()
