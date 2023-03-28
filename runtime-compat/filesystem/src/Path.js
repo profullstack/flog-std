@@ -78,6 +78,10 @@ export default class Path {
     return this.#stats.then(() => true, () => false);
   }
 
+  static exists(...args) {
+    return new Path(...args).exists;
+  }
+
   get isFile() {
     return this.exists.then(exists =>
       exists ? this.#stats.then(stats => stats.isFile()) : false);
@@ -122,7 +126,7 @@ export default class Path {
     const package_json = new Path(this.path, filename);
     return package_json.exists.then(exists => {
       if (exists) {
-        return this.path;
+        return this;
       }
       const {directory} = this;
       if (`${directory}` === "/") {
@@ -134,7 +138,7 @@ export default class Path {
   }
 
   // return the first directory where package.json is found, starting at cwd
-  static get moduleRoot() {
+  static get root() {
     return Path.resolve().discover("package.json");
   }
 
