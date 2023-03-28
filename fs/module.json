@@ -1,9 +1,8 @@
 {
-  "name": "std/filesystem",
+  "name": "std/fs",
   "description": "Filesystem operations",
   "version": "0.1.0",
-  "author": "Terrablue <terrablue@proton.me>",
   "issues": "https://github.com/flogjs/std/issues",
-  "repository": "https://github.com/flogjs/std/tree/master/filesystem",
+  "repository": "https://github.com/flogjs/std/tree/master/fs",
   "license": "MIT"
 }

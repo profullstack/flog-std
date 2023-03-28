@@ -3,7 +3,7 @@
 # Filesystem API
 
 ```js
-import {File} from "std/filesystem";
+import {File} from "std/fs";
 
 // reads the file `input.txt` in the current directory into `file`
 const file = await File.read("input.txt");

@@ -16,11 +16,11 @@ Implementation of W3C Web Cryptography API.
 
 Dynamic defensive programming as per own API.
 
-### Filesystem [`std/filesystem`](filesystem/README.md)
+### FS [`std/fs`](fs/README.md)
 
 Filesystem operations as per own API.
 
-### Functional [`std/functional`](functional/README.md)
+### Functional [`std/function`](function/README.md)
 
 Functional programming as per own API.
 

@@ -3,7 +3,7 @@
 ## Using
 
 ```js
-import {Maybe, Either} from "std/functional";
+import {Maybe, Either} from "std/function";
 
 const m1 = new Maybe(1);
 console.log(m1.isJust(), m1.isNothing(), m1.get());
