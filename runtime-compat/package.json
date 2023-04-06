@@ -1,16 +1,12 @@
 {
   "name": "runtime-compat",
-  "description": "Flog standard library implementation for NodeJS",
   "version": "0.14.1",
+  "description": "Flog standard library implementation for NodeJS",
   "bugs": "https://github.com/flogjs/std/issues",
-  "repository": "https://github.com/flogjs/std/tree/master/runtime-compat",
   "license": "MIT",
+  "repository": "https://github.com/flogjs/std/tree/master/runtime-compat",
   "devDependencies": {
-    "@babel/core": "^7.21.3",
-    "@babel/eslint-parser": "^7.21.3",
-    "@babel/plugin-syntax-import-assertions": "^7.20.0",
-    "eslint": "^8.36.0",
-    "eslint-plugin-json": "^3.1.0"
+    "maximin": "^0.1.2"
   },
   "type": "module",
   "exports": {
