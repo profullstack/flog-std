@@ -1,7 +1,2 @@
-.*
-test
 debris.json
-output
-jsconfig.json
-examples
-*.spec.js
+eslint.config.js
