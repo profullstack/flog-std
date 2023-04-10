@@ -1,6 +1,7 @@
 import {join, resolve, dirname, basename, extname} from "path";
 import {lstat, readdir} from "node:fs/promises";
 import {assert, is, defined, maybe} from "runtime-compat/dyndef";
+import {EagerEither} from "runtime-compat/function";
 import File from "./File.js";
 
 const file_prefix = 7;
@@ -64,6 +65,42 @@ export default class Path {
 
   static glob(pattern) {
     return new Path(".").glob(pattern);
+  }
+
+  async #collect(pattern, options) {
+    return EagerEither
+      .try(() => this.list(() => true))
+      .match({left: () => []})
+      .map(async list => {
+        let paths = [];
+        for (const path of list) {
+          if (path.name.startsWith(".")) {
+            continue;
+          }
+          if (options?.recursive && await path.isDirectory) {
+            paths = paths.concat(await path.#collect(pattern, options));
+          } else if (pattern === undefined ||
+              path.is(new RegExp(pattern, "u"))) {
+            paths.push(path);
+          }
+        }
+        return paths;
+      })
+      .get();
+  }
+
+  collect(pattern, options) {
+    maybe(pattern).anyOf(["string", RegExp]);
+    maybe(options).object();
+
+    return this.#collect(pattern, {
+      ...options,
+      recursive: options?.recursive ?? true,
+    });
+  }
+
+  static collect(path, pattern, options) {
+    return new Path(path).collect(pattern, options);
   }
 
   get #stats() {
