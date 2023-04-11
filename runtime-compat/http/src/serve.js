@@ -1,11 +1,21 @@
 import {Writable} from "stream";
 import Request from "./Request.js";
 
-const hasSSL = ({ssl}) => ssl?.key && ssl.cert;
+const hasSSL = ({ssl}) => ssl?.key !== undefined && ssl.cert !== undefined;
+const plain = () => ({type: "http", options: {}});
+const secure = async conf => {
+  const key = await conf.ssl.key.file.read();
+  const cert = await conf.ssl.cert.file.read();
+  return {type: "https", options: {key, cert}};
+};
 
-export default (handler, conf) =>
-  import(hasSSL(conf) ? "https" : "http").then(({createServer}) =>
-    createServer(conf, async (req, res) => {
+const resolve = conf => hasSSL(conf) ? secure(conf) : plain(conf);
+
+export default async (handler, conf) => {
+  const {type, options} = await resolve(conf);
+
+  return import(type).then(({createServer}) =>
+    createServer(options, async (req, res) => {
       // handler gets a WHATWG Request, and returns a WHATWG Response
       //
       // 1. wrap a node request in a WHATWG request
@@ -22,3 +32,4 @@ export default (handler, conf) =>
       // 2. copy from a WHATWG response into a node response
       await response.body.pipeTo(Writable.toWeb(res));
     }).listen(conf.port, conf.host));
+};
