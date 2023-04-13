@@ -191,6 +191,10 @@ export default class File extends Blob {
     return new File(path).write(data, options);
   }
 
+  text() {
+    return this.read();
+  }
+
   json() {
     return this.read().then(contents => JSON.parse(contents));
   }

@@ -7,6 +7,13 @@ import File from "./File.js";
 const file_prefix = 7;
 const parse = p => p.startsWith("file://") ? p.slice(file_prefix) : p;
 
+const assertBoundary = directory => {
+  is(directory).instance(Path);
+  if (`${directory}` === "/") {
+    throw new Error("Stopping at filesystem boundary");
+  }
+};
+
 export default class Path {
   constructor(...paths) {
     const [path] = paths;
@@ -159,16 +166,30 @@ export default class Path {
     return pattern.test(this.path);
   }
 
-  async discover(filename) {
-    const packageJSON = new Path(this.path, filename);
-    if (await packageJSON.exists) {
+  up(levels) {
+    if (levels === 0) {
       return this;
     }
     const {directory} = this;
-    if (`${directory}` === "/") {
-      const error = "Stopping at filesystem boundary, no package.json found";
-      throw new Error(error);
+    assertBoundary(directory, "Stopping at filesystem boundary");
+    return directory.up(levels - 1);
+  }
+
+  text() {
+    return this.file.text();
+  }
+
+  json() {
+    return this.file.json();
+  }
+
+  async discover(filename) {
+    const file = new Path(this.path, filename);
+    if (await file.exists) {
+      return this;
     }
+    const {directory} = this;
+    assertBoundary(directory);
     return directory.discover(filename);
   }
 
