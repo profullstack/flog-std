@@ -6,6 +6,7 @@
   "license": "MIT",
   "repository": "https://github.com/flogjs/std/tree/master/runtime-compat",
   "devDependencies": {
+    "debris": "^0.9.1",
     "maximin": "^0.1.2"
   },
   "type": "module",
