@@ -15,7 +15,12 @@ export default async (handler, conf) =>
       // handler gets a WHATWG Request, and returns a WHATWG Response
       //
       // 1. wrap a node request in a WHATWG request
-      const request = new Request(req, {headers: req.headers});
+      const url = new URL(req.url, `http://${req.headers.host}`);
+      const request = new Request(`${url}`, {
+        headers: req.headers,
+        method: req.method,
+        body: req,
+      });
 
       const response = await handler(request);
 

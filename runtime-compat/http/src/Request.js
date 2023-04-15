@@ -9,20 +9,17 @@ export default class Request {
   #url;
   #method;
 
-  constructor(input, {headers} = {}) {
-    is(input).object();
-    const {method, url} = input;
+  constructor(input, {body = null, headers, method = "GET"} = {}) {
+    is(input).string();
+    this.#url = input;
 
     is(method).string();
     this.#method = method;
 
-    is(url).string();
-    this.#url = url;
-
     is(headers).object();
     Object.entries(headers).forEach(header => this.#headers.set(...header));
 
-    this.#setBody(input);
+    this.#setBody(body);
   }
 
   #setBody(input) {
