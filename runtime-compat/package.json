@@ -13,6 +13,7 @@
   "exports": {
     "./args": "./args/exports.js",
     "./console": "./console/exports.js",
+    "./colors": "./colors/exports.js",
     "./crypto": "./crypto/exports.js",
     "./dyndef": "./dyndef/exports.js",
     "./env": "./env/exports.js",
