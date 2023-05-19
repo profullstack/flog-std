@@ -1,12 +1,12 @@
 {
   "name": "runtime-compat",
-  "version": "0.17.0",
+  "version": "0.17.1",
   "description": "Flog standard library implementation for NodeJS",
   "bugs": "https://github.com/flogjs/std/issues",
   "license": "MIT",
   "repository": "https://github.com/flogjs/std/tree/master/runtime-compat",
   "devDependencies": {
-    "debris": "^0.9.1",
+    "debris": "^0.13.0",
     "maximin": "^0.1.2"
   },
   "type": "module",
