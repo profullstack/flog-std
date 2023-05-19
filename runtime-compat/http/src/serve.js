@@ -2,6 +2,7 @@ import {Writable} from "stream";
 import Request from "./Request.js";
 
 const secure = ({ssl}) => ssl?.key !== undefined && ssl.cert !== undefined;
+const dedouble = url => url.replaceAll(/\/{1,}/ug, () => "/");
 
 const getOptions = async conf => secure(conf)
   ? {
@@ -15,7 +16,7 @@ export default async (handler, conf) =>
       // handler gets a WHATWG Request, and returns a WHATWG Response
       //
       // 1. wrap a node request in a WHATWG request
-      const url = new URL(req.url, `http://${req.headers.host}`);
+      const url = new URL(dedouble(req.url), `http://${req.headers.host}`);
       const request = new Request(`${url}`, {
         headers: req.headers,
         method: req.method,
