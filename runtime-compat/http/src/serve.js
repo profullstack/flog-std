@@ -32,5 +32,10 @@ export default async (handler, conf) =>
       res.writeHead(response.status);
 
       // 2. copy from a WHATWG response into a node response
-      await response.body.pipeTo(Writable.toWeb(res));
+      const {body} = response;
+      try {
+        await body.pipeTo(Writable.toWeb(res));
+      } catch (error) {
+        await body.cancel();
+      }
     }).listen(conf.port, conf.host));
