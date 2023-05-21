@@ -1,3 +1,4 @@
+import {parse} from "dotenv";
 import {Path} from "../../fs/exports.js";
 
 const root = await Path.root();
@@ -7,12 +8,7 @@ const {JS_ENV} = process.env;
 const env = root.join(`.env${JS_ENV ? `.${JS_ENV}` : ""}`);
 const local = new Path(`${env.path}.local`);
 
-const read = async path => Object.fromEntries((await path.text())
-  .split("\n")
-  .filter(line => /^\w*=.*$/u.test(line))
-  .map(line => line.split("="))
-);
-const select = async () => read(await local.exists ? local : env);
+const read = async () => parse(await (await local.exists ? local : env).text());
 
 const tryback = async (trial, fallback) => {
   try {
@@ -23,4 +19,4 @@ const tryback = async (trial, fallback) => {
   }
 };
 
-export default await tryback(select, {});
+export default await tryback(read, {});

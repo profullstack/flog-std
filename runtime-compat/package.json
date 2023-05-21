@@ -27,5 +27,8 @@
     "./math": "./math/exports.js",
     "./streams": "./streams/exports.js",
     "./timers": "./timers/exports.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
   }
 }
