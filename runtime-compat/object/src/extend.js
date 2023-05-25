@@ -1,7 +1,9 @@
 import {is} from "../../dyndef/exports.js";
 
 const extend = (base = {}, extension = {}) => {
-  is(base).object();
+  if (typeof base !== "object") {
+    return base;
+  }
   is(extension).object();
   return Object.keys(extension).reduce((result, property) => {
     const value = extension[property];

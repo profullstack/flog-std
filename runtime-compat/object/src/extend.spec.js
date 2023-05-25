@@ -52,6 +52,30 @@ export default test => {
     assert(extend(base, extension)).equals(extended);
   });
 
+  test.case("function", assert => {
+    {
+      const fn = () => undefined;
+      const base = {key: {subkey: "subvalue", subkey2: "subvalue2"}};
+      const extension = {key: {subkey: fn}};
+      const extended = {key: {subkey: fn, subkey2: "subvalue2"}};
+      assert(extend(base, extension)).equals(extended);
+    }
+    {
+      const fn = () => undefined;
+      const base = {key: {subkey: fn}};
+      const extension = {key: {subkey: "subvalue", subkey2: "subvalue2"}};
+      const extended = {key: {subkey: "subvalue", subkey2: "subvalue2"}};
+      assert(extend(base, extension)).equals(extended);
+    }
+    {
+      const fn = () => undefined;
+      const base = {fn, foo: "bar"};
+      const extension = {fn: {foo: "bar"}, fn2: {bar: "baz"}};
+      const extended = {fn, foo: "bar", fn2: {bar: "baz"}} ;
+      assert(extend(base, extension)).equals(extended);
+    }
+  });
+
   test.case("config enhancement", assert => {
     const base = {
       base: "/",
