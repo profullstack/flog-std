@@ -193,9 +193,13 @@ export default class Path {
     return directory.discover(filename);
   }
 
+  root() {
+    return this.discover("package.json");
+  }
+
   // return the first directory where package.json is found, starting at cwd
   static root() {
-    return Path.resolve().discover("package.json");
+    return Path.resolve().root();
   }
 
   static is(path, pattern) {
