@@ -11,7 +11,7 @@
   "repository": "https://github.com/flogjs/std/tree/master/runtime-compat",
   "devDependencies": {
     "debris": "^0.13.0",
-    "maximin": "^0.1.2"
+    "maximin": "^0.1.3"
   },
   "type": "module",
   "exports": {
@@ -21,6 +21,7 @@
     "./crypto": "./crypto/exports.js",
     "./dyndef": "./dyndef/exports.js",
     "./env": "./env/exports.js",
+    "./flow": "./flow/exports.js",
     "./fs": "./fs/exports.js",
     "./function": "./function/exports.js",
     "./http": "./http/exports.js",
