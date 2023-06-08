@@ -2,92 +2,66 @@ import {identity} from "../function/exports.js";
 import tryreturn from "./tryreturn.js";
 
 export default test => {
-  test.case("try faulty", async assert => {
+  test.case("`try` faulty", async assert => {
     try {
       await tryreturn().orelse(identity);
     } catch (error) {
       assert(error.message).equals("`undefined` must be of type function");
     }
   });
-  test.case("no orelse", async assert => {
+  test.case("sync: no `orelse`", async assert => {
     try {
       await tryreturn(() => 1);
     } catch (error) {
       assert(error.message).equals("`tryreturn` executed without a backup");
     }
+  });
+  test.case("async: no `orelse`", async assert => {
     try {
       await tryreturn(async () => 1);
     } catch (error) {
       assert(error.message).equals("`tryreturn` executed without a backup");
     }
   });
-  test.case("orelse faulty", async assert => {
+  test.case("`orelse` faulty", async assert => {
     try {
       await tryreturn(identity).orelse();
     } catch (error) {
       assert(error.message).equals("`undefined` must be of type function");
     }
   });
-  test.case("if doesn't throw", async assert => {
-    const value = await tryreturn(_ => 0).orelse(_ => 1);
+  test.case("sync: `try` doesn't throw", assert => {
+    const value = tryreturn(_ => 0).orelse(_ => 1);
     assert(value).equals(0);
+  });
+  test.case("async: `try` doesn't throw", async assert => {
     const value2 = await tryreturn(async _ => 0).orelse(async _ => 1);
     assert(value2).equals(0);
   });
-  test.case("if throws", async assert => {
-    {
-      const value = await tryreturn(_ => {
+  test.case("sync: if throws", assert => {
+    const value = tryreturn(_ => {
+      throw new Error();
+    }).orelse(_ => 1);
+    assert(value).equals(1);
+  });
+  test.case("async: if throws", async assert => {
+    const value = await tryreturn(async _ => {
+      throw new Error();
+    }).orelse(async _ => 1);
+    assert(value).equals(1);
+  });
+  test.case("sync: else throws", async assert => {
+    try {
+      tryreturn(_ => {
         throw new Error();
-      }).orelse(_ => 1);
-      assert(value).equals(1);
-    }
-    {
-      const value = await tryreturn(async _ => {
-        throw new Error();
-      }).orelse(_ => 1);
-      assert(value).equals(1);
-    }
-    {
-      const value = await tryreturn(_ => {
-        throw new Error();
-      }).orelse(async _ => 1);
-      assert(value).equals(1);
-    }
-    {
-      const value = await tryreturn(async _ => {
-        throw new Error();
-      }).orelse(async _ => 1);
-      assert(value).equals(1);
+      }).orelse(_ => {
+        throw new Error("else");
+      });
+    } catch (error) {
+      assert(error.message).equals("else");
     }
   });
-  test.case("else throws", async assert => {
-    try {
-      await tryreturn(_ => {
-        throw new Error();
-      }).orelse(_ => {
-        throw new Error("else");
-      });
-    } catch (error) {
-      assert(error.message).equals("else");
-    }
-    try {
-      await tryreturn(async _ => {
-        throw new Error();
-      }).orelse(_ => {
-        throw new Error("else");
-      });
-    } catch (error) {
-      assert(error.message).equals("else");
-    }
-    try {
-      await tryreturn(_ => {
-        throw new Error();
-      }).orelse(async _ => {
-        throw new Error("else");
-      });
-    } catch (error) {
-      assert(error.message).equals("else");
-    }
+  test.case("async: else throws", async assert => {
     try {
       await tryreturn(async _ => {
         throw new Error();
@@ -97,5 +71,27 @@ export default test => {
     } catch (error) {
       assert(error.message).equals("else");
     }
+  });
+  test.case("mixed colors", assert => {
+    const both = "`trial` and `backup` must be both sync or async";
+    try {
+      tryreturn(async _ => {
+        throw new Error();
+      }).orelse(_ => {
+        throw new Error("else");
+      });
+    } catch (error) {
+      assert(error.message).equals(both);
+    }
+    try {
+      tryreturn(_ => {
+        throw new Error();
+      }).orelse(async _ => {
+        throw new Error("else");
+      });
+    } catch (error) {
+      assert(error.message).equals(both);
+    }
+
   });
 };
