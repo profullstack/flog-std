@@ -1,10 +1,8 @@
-import {assert, is} from "../dyndef/exports.js";
+import {is} from "../dyndef/exports.js";
 const $backup = Symbol("backup");
 const $sync = Symbol("sync");
 
-const both = "`trial` and `backup` must be both sync or async";
 const type = ({constructor: {name}}) => name;
-const friends = (trial, backup) => assert(type(backup) === type(trial), both);
 
 export default trial => ({
   [$backup]: undefined,
@@ -30,7 +28,6 @@ export default trial => ({
   orelse(backup) {
     is(trial).function();
     is(backup).function();
-    friends(trial, backup);
     this[$backup] = backup;
 
     return type(trial) === "Function"

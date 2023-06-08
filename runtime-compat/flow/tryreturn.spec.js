@@ -72,26 +72,4 @@ export default test => {
       assert(error.message).equals("else");
     }
   });
-  test.case("mixed colors", assert => {
-    const both = "`trial` and `backup` must be both sync or async";
-    try {
-      tryreturn(async _ => {
-        throw new Error();
-      }).orelse(_ => {
-        throw new Error("else");
-      });
-    } catch (error) {
-      assert(error.message).equals(both);
-    }
-    try {
-      tryreturn(_ => {
-        throw new Error();
-      }).orelse(async _ => {
-        throw new Error("else");
-      });
-    } catch (error) {
-      assert(error.message).equals(both);
-    }
-
-  });
 };
