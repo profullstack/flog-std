@@ -15,6 +15,11 @@ export default test => {
     } catch (error) {
       assert(error.message).equals("`tryreturn` executed without a backup");
     }
+    try {
+      await tryreturn(async () => 1);
+    } catch (error) {
+      assert(error.message).equals("`tryreturn` executed without a backup");
+    }
   });
   test.case("orelse faulty", async assert => {
     try {
@@ -30,20 +35,54 @@ export default test => {
     assert(value2).equals(0);
   });
   test.case("if throws", async assert => {
-    const value = await tryreturn(_ => {
-      throw new Error();
-    }).orelse(_ => 1);
-    assert(value).equals(1);
-    const value2 = await tryreturn(async _ => {
-      throw new Error();
-    }).orelse(async _ => 1);
-    assert(value2).equals(1);
+    {
+      const value = await tryreturn(_ => {
+        throw new Error();
+      }).orelse(_ => 1);
+      assert(value).equals(1);
+    }
+    {
+      const value = await tryreturn(async _ => {
+        throw new Error();
+      }).orelse(_ => 1);
+      assert(value).equals(1);
+    }
+    {
+      const value = await tryreturn(_ => {
+        throw new Error();
+      }).orelse(async _ => 1);
+      assert(value).equals(1);
+    }
+    {
+      const value = await tryreturn(async _ => {
+        throw new Error();
+      }).orelse(async _ => 1);
+      assert(value).equals(1);
+    }
   });
   test.case("else throws", async assert => {
     try {
       await tryreturn(_ => {
         throw new Error();
       }).orelse(_ => {
+        throw new Error("else");
+      });
+    } catch (error) {
+      assert(error.message).equals("else");
+    }
+    try {
+      await tryreturn(async _ => {
+        throw new Error();
+      }).orelse(_ => {
+        throw new Error("else");
+      });
+    } catch (error) {
+      assert(error.message).equals("else");
+    }
+    try {
+      await tryreturn(_ => {
+        throw new Error();
+      }).orelse(async _ => {
         throw new Error("else");
       });
     } catch (error) {
