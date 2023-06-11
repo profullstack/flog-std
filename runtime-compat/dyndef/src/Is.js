@@ -102,7 +102,8 @@ export default class Is {
   }
 
   object(error) {
-    const def = `\`${this.#value}\` must be object`;
+    const string = Object.prototype.toString.call(this.#value);
+    const def = `\`${string}\` must be object`;
     const condition = typeof this.#value === "object" && this.#value !== null;
     return this.#test({condition, def, error});
   }
