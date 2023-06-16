@@ -1,18 +1,8 @@
 import {is} from "../dyndef/exports.js";
 const $backup = Symbol("backup");
-const $sync = Symbol("sync");
-
-const type = ({constructor: {name}}) => name;
 
 export default trial => ({
   [$backup]: undefined,
-  [$sync]() {
-    try {
-      return trial();
-    } catch (error) {
-      return this[$backup](error);
-    }
-  },
   then(onFulfilled, onRejected) {
     is(trial).function();
     is(this[$backup]).defined("`tryreturn` executed without a backup");
@@ -30,10 +20,6 @@ export default trial => ({
     is(backup).function();
     this[$backup] = backup;
 
-    return type(trial) === "Function"
-      // execute directly for sync functions
-      ? this[$sync]()
-      // delegate to `then`
-      : this;
+    return this;
   },
 });
