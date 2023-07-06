@@ -1,3 +1,5 @@
+export {default as from} from "./src/from.js";
+export {default as to} from "./src/to.js";
 export {default as inflate} from "./src/inflate.js";
 export {default as extend} from "./src/extend.js";
 export {default as transform} from "./src/transform.js";

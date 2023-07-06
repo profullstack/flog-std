@@ -1,7 +1,7 @@
 import {is} from "../../dyndef/exports.js";
 import {identity} from "../../function/exports.js";
-
-const {entries: to, fromEntries: from} = Object;
+import from from "./from.js";
+import to from "./to.js";
 
 export default (object = {}, transformer = identity) => {
   is(object).object();
