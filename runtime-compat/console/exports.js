@@ -1,1 +1,1 @@
-export {Console as default} from "node:console";
+export {default} from "node:console";
