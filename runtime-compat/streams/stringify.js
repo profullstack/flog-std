@@ -1,4 +1,5 @@
 import {defined} from "../function/exports.js";
+import {ReadableStream} from "./exports.js";
 
 const decoder = new TextDecoder();
 const read = ({chunks = [], reader}) =>
@@ -6,5 +7,6 @@ const read = ({chunks = [], reader}) =>
     ? chunks
     : read({chunks: [...chunks, decoder.decode(value)], reader}));
 
-export default async readable =>
-  (await read({reader: readable.getReader()})).filter(defined).join();
+export default async input => input instanceof ReadableStream
+  ? (await read({reader: input.getReader()})).filter(defined).join()
+  : input;

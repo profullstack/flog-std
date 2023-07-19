@@ -1,78 +1,78 @@
 /* 1xx information */
-export const Continue = 100;
-export const SwitchingProtocols = 101;
-export const Processing = 102;
-export const EarlyHints = 103;
+export const CONTINUE = 100;
+export const SWITCHING_PROTOCOLS = 101;
+export const PROCESSING = 102;
+export const EARLY_HINTS = 103;
 
 /* 2xx success */
 export const OK = 200;
-export const Created = 201;
-export const Accepted = 202;
-export const NonAuthoritativeInformation = 203;
-export const NoContent = 204;
-export const ResetContent = 205;
-export const PartialContent = 206;
-export const MultiStatus = 207;
-export const AlreadyReported = 208;
+export const CREATED = 201;
+export const ACCEPTED = 202;
+export const NON_AUTHORITATIVE_INFORMATION = 203;
+export const NO_CONTENT = 204;
+export const RESET_CONTENT = 205;
+export const PARTIAL_CONTENT = 206;
+export const MULTI_STATUS = 207;
+export const ALREADY_REPORTED = 208;
 
-export const IMUsed = 226;
+export const IM_USED = 226;
 
 /* 3xx redirect */
-export const MultipleChoices = 300;
-export const MovedPermanently = 301;
-export const Found = 302;
-export const SeeOther = 303;
-export const NotModified = 304;
-export const UseProxy = 305;
-export const SwitchProxy = 306;
-export const TemporaryRedirect = 307;
-export const PermanentRedirect = 308;
+export const MULTIPLE_CHOICES = 300;
+export const MOVED_PERMANENTLY = 301;
+export const FOUND = 302;
+export const SEE_OTHER = 303;
+export const NOT_MODIFIED = 304;
+export const USE_PROXY = 305;
+export const SWITCH_PROXY = 306;
+export const TEMPORARY_REDIRECT = 307;
+export const PERMANENT_REDIRECT = 308;
 
 /* 4xx client error */
-export const BadRequest = 400;
-export const Unauthorized = 401;
-export const PaymentRequired = 402;
-export const Forbidden = 403;
-export const NotFound = 404;
-export const MethodNotAllowed = 405;
-export const NotAcceptable = 406;
-export const ProxyAuthenticationRequired = 407;
-export const RequestTimeout = 408;
-export const Conflict = 409;
-export const Gone = 410;
-export const LengthRequired = 411;
-export const PreconditionFailed = 412;
-export const PayloadTooLarge = 413;
-export const URITooLong = 414;
-export const UnsupportedMediaType = 415;
-export const RangeNotSatisfiable = 416;
-export const ExpectationFailed = 417;
-export const ImATeapot = 418;
+export const BAD_REQUEST = 400;
+export const UNAUTHORIZED = 401;
+export const PAYMENT_REQUIRED = 402;
+export const FORBIDDEN = 403;
+export const NOT_FOUND = 404;
+export const METHOD_NOT_ALLOWED = 405;
+export const NOT_ACCEPTABLE = 406;
+export const PROXY_AUTHENTICATION_REQUIRED = 407;
+export const REQUEST_TIMEOUT = 408;
+export const CONFLICT = 409;
+export const GONE = 410;
+export const LENGTH_REQUIRED = 411;
+export const PRECONDITION_FAILED = 412;
+export const PAYLOAD_TOO_LARGE = 413;
+export const URI_TOO_LONG = 414;
+export const UNSUPPORTED_MEDIA_TYPE = 415;
+export const RANGE_NOT_SATISFIABLE = 416;
+export const EXPECTATION_FAILED = 417;
+export const IM_A_TEAPOT = 418;
 
-export const MisdirectedRequest = 421;
-export const UnprocessableContent = 422;
-export const Locked = 423;
-export const FailedDependency = 424;
-export const TooEarly = 425;
-export const UpgradeRequired = 426;
+export const MISDIRECTED_REQUEST = 421;
+export const UNPROCESSABLE_CONTENT = 422;
+export const LOCKED = 423;
+export const FAILED_DEPENDENCY = 424;
+export const TOO_EARLY = 425;
+export const UPGRADE_REQUIRED = 426;
 
-export const PreconditionRequired = 428;
-export const TooManyRequests = 429;
+export const PRECONDITION_REQUIRED = 428;
+export const TOO_MANY_REQUESTS = 429;
 
-export const RequestHeaderFieldsTooLarge = 431;
+export const REQUEST_HEADER_FIELDS_TOO_LARGE = 431;
 
-export const UnavailableForLegalReasons = 451;
+export const UNAVAILABLE_FOR_LEGAL_REASONS = 451;
 
 /* 5xx server error */
-export const InternalServerError = 500;
-export const NotImplemented = 501;
-export const BadGateway = 502;
-export const ServiceUnavailable = 503;
-export const GatewayTimeout = 504;
-export const HTTPVersionNotSupported = 505;
-export const VariantAlsoNegotiates = 506;
-export const InsufficientStorage = 507;
-export const LoopDetected = 508;
+export const INTERNAL_SERVER_ERROR = 500;
+export const NOT_IMPLEMENTED = 501;
+export const BAD_GATEWAY = 502;
+export const SERVICE_UNAVAILABLE = 503;
+export const GATEWAY_TIMEOUT = 504;
+export const HTTP_VERSION_NOT_SUPPORTED = 505;
+export const VARIANT_ALSO_NEGOTIATES = 506;
+export const INSUFFICIENT_STORAGE = 507;
+export const LOOP_DETECTED = 508;
 
-export const NotExtended = 510;
-export const NetworkAuthenticationRequired = 511;
+export const NOT_EXTENDED = 510;
+export const NETWORK_AUTHENTICATION_REQUIRED = 511;
