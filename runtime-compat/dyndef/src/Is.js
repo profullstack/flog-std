@@ -144,6 +144,24 @@ export default class Is {
     return this.subclass(Class, error);
   }
 
+  integer(error) {
+    const def = `\`${this.#value}\` must be integer`;
+    const condition = Number.isInteger(this.#value);
+    return this.#test({condition, def, error});
+  }
+
+  // (signed) integer
+  isize(error) {
+    return this.integer(error);
+  }
+
+  // unsigned (positive) integer
+  usize(error) {
+    const def = `\`${this.#value}\` must be positive integer`;
+    const condition = Number.isInteger(this.#value) && this.#value > 0;
+    return this.#test({condition, def, error});
+  }
+
   anyOf(Classes, error) {
     const classes = Classes instanceof Array ? Classes : [Classes];
     const classes_str = classes.map(c => `\`${c}\``).join(", ");
