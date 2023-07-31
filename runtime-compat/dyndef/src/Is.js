@@ -39,48 +39,24 @@ export default class Is {
     return this.#typeof("string", error);
   }
 
-  s(error) {
-    return this.string(error);
-  }
-
   number(error) {
     return this.#typeof("number", error);
-  }
-
-  n(error) {
-    return this.number(error);
   }
 
   bigint(error) {
     return this.#typeof("bigint", error);
   }
 
-  bi(error) {
-    return this.bigint(error);
-  }
-
   boolean(error) {
     return this.#typeof("boolean", error);
-  }
-
-  b(error) {
-    return this.boolean(error);
   }
 
   symbol(error) {
     return this.#typeof("symbol", error);
   }
 
-  sb(error) {
-    return this.symbol(error);
-  }
-
   function(error) {
     return this.#typeof("function", error);
-  }
-
-  f(error) {
-    return this.function(error);
   }
 
   undefined(error) {
@@ -97,19 +73,11 @@ export default class Is {
     return this.#test({condition, def, error});
   }
 
-  a(error) {
-    return this.array(error);
-  }
-
   object(error) {
     const string = Object.prototype.toString.call(this.#value);
     const def = `\`${string}\` must be object`;
     const condition = typeof this.#value === "object" && this.#value !== null;
     return this.#test({condition, def, error});
-  }
-
-  o(error) {
-    return this.object(error);
   }
 
   defined(error) {
@@ -144,6 +112,14 @@ export default class Is {
     return this.subclass(Class, error);
   }
 
+  anyOf(Classes, error) {
+    const classes = Classes instanceof Array ? Classes : [Classes];
+    const classes_str = classes.map(c => `\`${c}\``).join(", ");
+    const def = `\`${this.#value}\` must instance any of \`${classes_str}\``;
+    const condition = classes.some(c => try_instanceof(this.#value, c));
+    return this.#test({condition, def, error});
+  }
+
   integer(error) {
     const def = `\`${this.#value}\` must be integer`;
     const condition = Number.isInteger(this.#value);
@@ -159,14 +135,6 @@ export default class Is {
   usize(error) {
     const def = `\`${this.#value}\` must be positive integer`;
     const condition = Number.isInteger(this.#value) && this.#value > 0;
-    return this.#test({condition, def, error});
-  }
-
-  anyOf(Classes, error) {
-    const classes = Classes instanceof Array ? Classes : [Classes];
-    const classes_str = classes.map(c => `\`${c}\``).join(", ");
-    const def = `\`${this.#value}\` must instance any of \`${classes_str}\``;
-    const condition = classes.some(c => try_instanceof(this.#value, c));
     return this.#test({condition, def, error});
   }
 }

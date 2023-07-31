@@ -4,15 +4,15 @@ import {nullish} from "./attributes.js";
 const operations = [
   // typeof
   "string", "number", "bigint", "boolean", "symbol", "function",
-  "s", "n", "bi", "b", "sb", "f",
   // eq
   "undefined", "null",
   // other types
   "array", "object",
-  "a", "o",
   // misc
-  "defined", "constructible", "instance", "subclass", "anyOf",
-  "sub", "of",
+  "defined", "constructible", "instance", "of", "subclass", "sub", "anyOf",
+  // sizes
+  "integer", "isize", "usize",
+
 ];
 
 const return_nullish = value => nullish(value) ? value : true;
