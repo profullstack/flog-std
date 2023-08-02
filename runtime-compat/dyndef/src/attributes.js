@@ -1,4 +1,7 @@
-const isNumeric = value => !isNaN(parseFloat(value)) && isFinite(value);
+const number = value => !Number.isNaN(Number.parseFloat(value))
+  && Number.isFinite(Number(value));
+
+const isNumeric = value => typeof value === "string" && number(value);
 
 export const numeric = value => {
   try {
