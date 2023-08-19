@@ -114,7 +114,7 @@ export default class Is {
 
   anyOf(Classes, error) {
     const classes = Classes instanceof Array ? Classes : [Classes];
-    const classes_str = classes.map(c => `\`${c?.name ?? name}\``).join(", ");
+    const classes_str = classes.map(c => `\`${c?.name ?? c}\``).join(", ");
     const def = `\`${this.#value}\` must instance any of ${classes_str}`;
     const condition = classes.some(c => try_instanceof(this.#value, c));
     return this.#test({condition, def, error});
