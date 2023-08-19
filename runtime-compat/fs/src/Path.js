@@ -197,6 +197,10 @@ export default class Path {
     return this.discover("package.json");
   }
 
+  debase(base) {
+    return new Path(this.path.replace(base, _ => ""));
+  }
+
   // return the first directory where package.json is found, starting at cwd
   static root() {
     return Path.resolve().root();
@@ -208,5 +212,9 @@ export default class Path {
 
   static resolve(...paths) {
     return new Path(resolve(...paths));
+  }
+
+  static join(...[first, ...rest]) {
+    return new Path(first).join(...rest);
   }
 }
