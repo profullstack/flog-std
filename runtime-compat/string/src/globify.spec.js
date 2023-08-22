@@ -30,7 +30,7 @@ export default test => {
     check("a.js", [1]);
     check("a.css", [2]);
   });
-  test.case("simply wildcard", check => {
+  test.case("simple wildcard", check => {
     check("*", [0,1,2,3,10]);
     check("a*", [0,1,2,3]);
     check("a.*", [1,2]);
