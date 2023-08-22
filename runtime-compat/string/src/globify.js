@@ -1,0 +1,18 @@
+import {is} from "../../dyndef/exports.js";
+
+const globify = pattern => pattern
+  // . -> real dots need escaping
+  .replaceAll(".", "\\.")
+  // ** -> anything, including /
+  .replaceAll("**", ".*")
+  // ignore previously replaced ** -> anything aside from /
+  .replace(/(?<!\.)\*/u, "[^/]*")
+  // * may be standalone -> anything aside from /
+  .replace(/(?<=\\)\.\*/u, ".[^/]*")
+;
+
+export default pattern => {
+  is(pattern).string();
+  return new RegExp(`^${globify(pattern)}$`, "u");
+};
+
