@@ -12,6 +12,9 @@ const paths = [
   "a/b/c.css",
   "a/b/c_css",
   "b",
+  "a/",
+  "a/b/c/d/e.js",
+  "/a",
 ];
 
 export default test => {
@@ -37,12 +40,18 @@ export default test => {
   });
   test.case("double wildcard", check => {
     check("**", paths.map((_, i) => i));
+    check("**c**", paths.flatMap((path, i) => path.includes("c") ? [i] : []));
+    check("/**/", [13]);
+    check("/**", paths.flatMap((path, i) => path.startsWith("/") ? [i] : []));
+    check("**/", paths.flatMap((path, i) => path.endsWith("/") ? [i] : []));
     check("a**", paths.flatMap((path, i) => path.startsWith("a") ? [i] : []));
     check("**.", []);
-    check("**.js", [1, 4, 7]);
+    check("**.js", [1, 4, 7, 12]);
     check("**.css", [2, 5, 8]);
-    check("**.*", [1, 2, 4, 5, 7, 8]);
+    check("**.*", [1, 2, 4, 5, 7, 8, 12]);
     check("**_*", [3, 6, 9]);
     check("**/*", paths.flatMap((path, i) => path.includes("/") ? [i] : []));
+    check("/**/*", paths.flatMap((path, i) => path.startsWith("/") ? [i] : []));
+    check("a/**/*.js", [4, 7, 12]);
   });
 };
