@@ -3,6 +3,8 @@ import {is} from "../../dyndef/exports.js";
 const globify = pattern => pattern
   // . -> real dots need escaping
   .replaceAll(".", "\\.")
+  // . -> real dots need escaping
+  .replaceAll("?", ".")
   // /**/ -> / and then anything
   .replaceAll("/**/", "/(.*)")
   // ** -> anything, including /
