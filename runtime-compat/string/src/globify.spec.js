@@ -15,7 +15,13 @@ const paths = [
   "a/",
   "a/b/c/d/e.js",
   "/a",
+  "c",
 ];
+
+const is = (c, key) => paths.flatMap((path, i) => path[key](c) ? [i] : []);
+const includes = c => is(c, "includes");
+const starts = c => is(c, "startsWith");
+const ends = c => is(c, "endsWith");
 
 export default test => {
   test.reassert(assert => {
@@ -33,25 +39,35 @@ export default test => {
     check("a.js", [1]);
     check("a.css", [2]);
   });
+  test.case("question mark", check => {
+    check("?", [0,10,14]);
+    check("??", [11,13]);
+    check("a?js", [1,3]);
+  });
   test.case("simple wildcard", check => {
-    check("*", [0,1,2,3,10]);
+    check("*", [0,1,2,3,10,14]);
     check("a*", [0,1,2,3]);
     check("a.*", [1,2]);
   });
   test.case("double wildcard", check => {
     check("**", paths.map((_, i) => i));
-    check("**c**", paths.flatMap((path, i) => path.includes("c") ? [i] : []));
-    check("/**/", [13]);
-    check("/**", paths.flatMap((path, i) => path.startsWith("/") ? [i] : []));
-    check("**/", paths.flatMap((path, i) => path.endsWith("/") ? [i] : []));
-    check("a**", paths.flatMap((path, i) => path.startsWith("a") ? [i] : []));
+    check("**c**", includes("c"));
+    check("/**/", starts("/"));
+    check("/**", starts("/"));
+    check("**/", ends("/"));
+    check("a**", starts("a"));
     check("**.", []);
-    check("**.js", [1, 4, 7, 12]);
-    check("**.css", [2, 5, 8]);
+    check("**.js", ends(".js"));
+    check("**.css", ends(".css"));
     check("**.*", [1, 2, 4, 5, 7, 8, 12]);
     check("**_*", [3, 6, 9]);
-    check("**/*", paths.flatMap((path, i) => path.includes("/") ? [i] : []));
-    check("/**/*", paths.flatMap((path, i) => path.startsWith("/") ? [i] : []));
+    check("**/*", includes("/"));
+    check("/**/*", starts("/"));
     check("a/**/*.js", [4, 7, 12]);
+  });
+  test.case("brackets", check => {
+    check("[ab]", [0, 10]);
+    check("[a-b]", [0, 10]);
+    check("[a-c]", [0, 10, 14]);
   });
 };
