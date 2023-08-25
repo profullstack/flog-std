@@ -15,13 +15,12 @@ import {is} from "../dyndef/exports.js";
  * Midchain breakages can be deemed acceptable in some scenarios, where a
  * function may elect to determine the output is done and not call `next`
  *
- * reduce here essentially wraps every function, starting from the last, then
- * the next last, until the first function is the outermost wrapper, executed
- * first
+ * reduceRight here essentially wraps every function, starting from the last,
+ * in the next last, until the first function is the outermost wrapper,
+ * executed first
  */
 export default (fns, initial_fn = identity) => {
   is(fns).array();
 
-  return fns.reduce(async (next, fn) => value => next.then(n => fn(value, n)),
-    Promise.resolve(initial_fn));
+  return fns.reduceRight((next, fn) => value => fn(value, next), initial_fn);
 };
